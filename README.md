@@ -1,6 +1,8 @@
 # English 8 — Dönem 1
 
-A static English learning site for Turkish 8th-grade learners. It includes a course home page and five unit folders, with expanded grammar notes, 30-word vocabulary banks and sprints, three reading passages with comprehension questions, guided speaking tasks, two exercise sets, a scored unit test, 20 original LGS-style questions, study tips, and a matching game in each unit. Teen Life includes extra model-supported daily-hobby speaking practice in the Simple Present.
+A static English learning site for Turkish 8th-grade learners. The five first-term units and the outcome labels for Units 2–5 follow the 2026–2027 MEB grade 8 English topic-question distribution. Each unit includes Turkish-supported grammar, a 30-word sprint, reading and speaking practice, exercises, tests, original LGS-style questions, tips and games. Units 2–5 add more grammar, vocabulary, two reading passages, three guided speaking tasks, a saved writing pad aligned with the listed MEB writing outcome, and 10 extra LGS questions (30 total). All units have a replayable timed quest with hearts, streak XP, medals and locally saved records.
+
+Official curriculum source: [MEB 2026–2027 first-term topic-question distribution](https://odsgm.meb.gov.tr/www/1donem-konu-soru-dagilim-tablolari-2026-2027/icerik/1724). The unit outcomes used by the site are E8.2.R1/W1, E8.3.R1/R2/W1, E8.4.R1/W1, and E8.5.R1/R2/W1.
 
 ## Run locally
 
@@ -20,4 +22,4 @@ Open [http://localhost:4173](http://localhost:4173) in a browser. No build step 
 - `assets/app.js` — shared rendering, scoring, and local progress
 - `assets/site.css` — responsive styles
 
-Test and LGS best scores, points, game matches, and page-specific notes are stored separately in the browser's local storage on the learner's device.
+Test and LGS best scores, quest records, points, game matches, page-specific notes and writing drafts are stored in the browser's local storage on the learner's device.
