@@ -24,9 +24,12 @@
   const unitProgress = id => {
     const all = readProgress();
     if (!all.units) all.units = {};
-    if (!all.units[id]) all.units[id] = { points: 0, rewards: [], quizBest: 0, lgsBest: 0, mastered: false, matched: [] };
+    if (!all.units[id]) all.units[id] = { points: 0, rewards: [], quizBest: 0, lgsBest: 0, vocabBest: 0, mastered: false, matched: [] };
     // Migrate existing browser progress without changing any saved scores.
-    if (all.units[id].lgsBest == null) { all.units[id].lgsBest = 0; writeProgress(all); }
+    let migrated = false;
+    if (all.units[id].lgsBest == null) { all.units[id].lgsBest = 0; migrated = true; }
+    if (all.units[id].vocabBest == null) { all.units[id].vocabBest = 0; migrated = true; }
+    if (migrated) writeProgress(all);
     return all.units[id];
   };
   const masteryCount = () => lessons.filter(lesson => (unitProgress(lesson.id).mastered)).length;
@@ -84,6 +87,21 @@
     const bestLabel = document.querySelector("[data-lgs-best]");
     if (bestLabel) bestLabel.textContent = current.lgsBest || 0;
   }
+  function setVocabBest(lesson, score) {
+    const all = readProgress(); all.units ||= {};
+    const current = all.units[lesson.id] || { points: 0, rewards: [], quizBest: 0, lgsBest: 0, vocabBest: 0, mastered: false, matched: [] };
+    const oldBest = current.vocabBest || 0;
+    current.rewards ||= [];
+    if (score > oldBest) {
+      const gain = (score - oldBest) * 2;
+      current.vocabBest = score; current.points = (current.points || 0) + gain;
+      current.rewards.push(`vocab-best-${score}`);
+      announce(`Yeni kelime alıştırması rekorun! +${gain} puan`);
+    }
+    all.units[lesson.id] = current; writeProgress(all); updateProgressUI();
+    const bestLabel = document.querySelector("[data-vocab-best]");
+    if (bestLabel) bestLabel.textContent = current.vocabBest || 0;
+  }
   function renderNav(activeId) {
     const nav = document.getElementById("unit-nav"); if (!nav) return;
     nav.innerHTML = lessons.map(lesson => `<a class="unit-link ${activeId === lesson.id ? "active" : ""}" href="${paths[lesson.id]}" ${activeId === lesson.id ? 'aria-current="page"' : ""}>${iconFor(lesson)}<span>${escapeHtml(lesson.title)}</span><span class="unit-number">${String(lesson.number).padStart(2,"0")}</span></a>`).join("");
@@ -107,14 +125,16 @@
   function quizQuestions(items, prefix) {
     return items.map((item, i) => `<fieldset class="question-row"><legend>${i+1}. ${escapeHtml(item[0])}</legend>${item[4] ? `<div class="question-context">${escapeHtml(item[4])}</div>` : ""}<div class="choice-list">${item[1].map((option, j) => `<label class="choice-label"><input type="radio" name="${prefix}-${i}" value="${j}" required><span>${escapeHtml(option)}</span></label>`).join("")}</div></fieldset>`).join("");
   }
-  function renderQuizForm(items, id, label, mode) {
-    return `<form class="assessment-form" data-kind="${mode}" data-id="${id}">${quizQuestions(items, id)}<div class="action-row"><button class="primary-button" type="submit">${label}</button><span class="feedback" aria-live="polite"></span></div><div class="result-slot" aria-live="polite"></div></form>`;
+  function renderQuizForm(items, id, label, mode, index = "") {
+    return `<form class="assessment-form" data-kind="${mode}" data-id="${id}" ${index !== "" ? `data-index="${index}"` : ""}>${quizQuestions(items, id)}<div class="action-row"><button class="primary-button" type="submit">${label}</button><span class="feedback" aria-live="polite"></span></div><div class="result-slot" aria-live="polite"></div></form>`;
   }
   function renderLesson(lesson) {
     const main = document.getElementById("main-content");
     document.title = `${lesson.title} — English 8`;
     const anchors = [["grammar","Grammar"],["vocabulary","Vocabulary"],["reading","Reading"],["speaking","Speaking"],["practice","Practice"],["quiz","Test"],["lgs","LGS Practice"],["tips","Tips"],["game","Play & Learn"]];
     const vocabRows = lesson.vocab.map(([en,tr,example]) => `<tr><td>${escapeHtml(en)}</td><td>${escapeHtml(tr)}</td><td>${escapeHtml(example)}</td></tr>`).join("");
+    const extraReadings = lesson.extraReadings.map((reading,index) => `<article class="reading-card extra-reading-card"><div class="activity-kicker">OKUMA ${index+2}</div><h3>${escapeHtml(reading.title)}</h3><p>${escapeHtml(reading.text)}</p><div class="practice-box reading-check"><h4>Comprehension check · Anlama soruları</h4>${renderQuizForm(reading.questions,lesson.id,"Yanıtları kontrol et","reading-extra",index)}</div></article>`).join("");
+    const speakingExercises = lesson.speakingExercises.map((exercise,index) => `<article class="speaking-exercise"><span class="activity-kicker">KONUŞMA ${index+1}</span><h3>${escapeHtml(exercise.title)}</h3><p><strong>Situation:</strong> ${escapeHtml(exercise.situation)}</p><p><strong>Your task:</strong> ${escapeHtml(exercise.task)}</p><div class="phrase-bank"><strong>Useful phrases</strong><p>${escapeHtml(exercise.phrases)}</p></div><p class="speaking-challenge"><strong>Challenge:</strong> ${escapeHtml(exercise.challenge)}</p><details><summary>Bitirdiğinde kendini kontrol et</summary><ul><li>Konuşmamı İngilizce tamamladım.</li><li>Hedef ifadelerden en az ikisini kullandım.</li><li>Eşimin konuşmasını dinledim ve rolümüzü değiştirdim.</li></ul></details></article>`).join("");
     const grammar = lesson.grammar.map(item => `<article class="grammar-card"><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.rule)}</p><div class="example-list">${item.examples.map(example => `<div class="example-line">${escapeHtml(example)}</div>`).join("")}</div>${item.mistake ? `<p class="grammar-mistake"><strong>Sık yapılan hata:</strong> ${escapeHtml(item.mistake)}</p>` : ""}</article>`).join("");
     const tips = lesson.tips.map((tip,i) => `<li><span class="prompt-mark">${i+1}</span><span>${escapeHtml(tip)}</span></li>`).join("");
     const speaking = lesson.speak.map((prompt,i) => `<li><span class="prompt-mark">${i+1}</span><span>${escapeHtml(prompt)}</span></li>`).join("");
@@ -126,9 +146,9 @@
       <section class="unit-hero"><div class="unit-copy"><div class="unit-number-label">ÜNİTE ${String(lesson.number).padStart(2,"0")}</div><h1>${escapeHtml(lesson.title)}</h1><p>${escapeHtml(lesson.intro)}</p><div class="goal-line"><span class="goal-dot"></span>${escapeHtml(lesson.goal)}</div></div><div class="hero-visual"><img src="../assets/${lesson.image}" alt="${escapeHtml(lesson.tr)} konulu öğrenme illüstrasyonu"></div></section>
       <nav class="unit-section-nav" aria-label="Ünite bölümleri">${anchors.map(([id,label])=>`<a class="section-pill" href="#${id}">${label}</a>`).join("")}</nav>
       <section class="lesson-section" id="grammar">${sectionHead("01","Grammar · Dil Bilgisi","Kuralı incele, örnekleri sesli oku.")}<div class="grammar-grid">${grammar}</div></section>
-      <section class="lesson-section" id="vocabulary">${sectionHead("02","Vocabulary · Kelime Bilgisi","İngilizce kelimeyi, Türkçe anlamını ve örnek cümlesini birlikte öğren.")}<div class="table-wrap"><table class="vocab-table"><thead><tr><th>English</th><th>Türkçe</th><th>Example</th></tr></thead><tbody>${vocabRows}</tbody></table></div></section>
-      <section class="lesson-section" id="reading">${sectionHead("03","Reading · Okuma","Metni oku, ardından anlama sorularını cevapla.")}<article class="reading-card"><h3>${escapeHtml(lesson.reading.title)}</h3><p>${escapeHtml(lesson.reading.text)}</p></article><div class="practice-box" style="margin-top:15px"><h3>Reading check</h3><p>Metne göre doğru cevabı seç.</p>${renderQuizForm(lesson.readQuestions,lesson.id,"Cevapları kontrol et","reading")}</div></section>
-      <section class="lesson-section" id="speaking">${sectionHead("04","Speaking · Konuşma","Bir eşle çalışabilir veya yanıtlarını sesli olarak kaydedebilirsin.")}<ul class="speaking-list">${speaking}</ul></section>
+      <section class="lesson-section" id="vocabulary">${sectionHead("02","Vocabulary · Kelime Bilgisi","Kelimeleri örnekleriyle öğren; ardından anlam ve kullanım alıştırmasını çöz.")}<div class="table-wrap"><table class="vocab-table"><thead><tr><th>English</th><th>Türkçe</th><th>Example</th></tr></thead><tbody>${vocabRows}</tbody></table></div><div class="practice-box vocabulary-practice"><div class="practice-heading"><div><span class="activity-kicker">10 SORULUK ALIŞTIRMA</span><h3>Vocabulary Challenge · Kelime Alıştırması</h3><p>Kelimenin anlamını veya cümledeki doğru kullanımını seç.</p></div><span class="badge-note">En iyi: <strong data-vocab-best>${progress.vocabBest || 0}</strong> / 10</span></div>${renderQuizForm(lesson.vocabularyPractice,lesson.id,"Kelime alıştırmasını bitir","vocabulary")}</div></section>
+      <section class="lesson-section" id="reading">${sectionHead("03","Reading · Okuma","Metinleri oku, ayrıntıları bul ve anlama sorularını yanıtla.")}<article class="reading-card"><h3>${escapeHtml(lesson.reading.title)}</h3><p>${escapeHtml(lesson.reading.text)}</p></article><div class="practice-box" style="margin-top:15px"><h3>Reading check</h3><p>Metne göre doğru cevabı seç.</p>${renderQuizForm(lesson.readQuestions,lesson.id,"Cevapları kontrol et","reading")}</div><div class="extra-reading-list">${extraReadings}</div></section>
+      <section class="lesson-section" id="speaking">${sectionHead("04","Speaking · Konuşma","Görev kartlarını bir eşle canlandır. Sonra rolleri değiştir ve öz değerlendirme listesini kullan.")}<ul class="speaking-list">${speaking}</ul><div class="speaking-exercise-grid">${speakingExercises}</div></section>
       <section class="lesson-section" id="practice">${sectionHead("05","More Exercises · Ek Alıştırmalar","Önce boşlukları doldur, sonra doğru seçeneği bul.")}<div class="practice-box"><h3>Set A · Complete the sentences</h3><p>İngilizce cevabını yaz ve kontrol et. Büyük / küçük harf farkı aranmaz.</p><form class="fill-form" data-id="${lesson.id}">${practiceA}<div class="action-row"><button class="primary-button" type="submit">Cevapları kontrol et</button><span class="feedback" aria-live="polite"></span></div></form></div><div class="practice-box"><h3>Set B · Choose the correct answer</h3><p>Her soruda bir doğru cevap var.</p>${renderQuizForm(lesson.practiceB,lesson.id,"Set B’yi kontrol et","practice")}</div></section>
       <section class="lesson-section" id="quiz">${sectionHead("06","Unit Test · Ünite Testi","10 soru · Her doğru cevap 1 puan. 7/10 ve üzeri üniteyi tamamlar.")}<div class="badge-note">En iyi sonuç: ${progress.quizBest || 0} / 10 · ${progress.points || 0} puan</div><div style="height:12px"></div>${renderQuizForm(lesson.quiz,lesson.id,"Testi bitir","quiz")}</section>
       <section class="lesson-section" id="lgs">${sectionHead("07","LGS Practice · LGS Alıştırması","5 kısa senaryo, her senaryoda 2 soru · Her doğru cevap 1 puan.")}<div class="badge-note">LGS en iyi sonuç: <strong data-lgs-best>${progress.lgsBest || 0}</strong> / 10 · Ayrı kaydedilir</div><div style="height:12px"></div>${renderQuizForm(lesson.lgsQuestions,lesson.id,"LGS sorularını bitir","lgs")}</section>
@@ -143,7 +163,8 @@
   function attachForms(lesson) {
     document.querySelectorAll(".assessment-form").forEach(form => form.addEventListener("submit", event => {
       event.preventDefault();
-      const kind = form.dataset.kind, items = kind === "quiz" ? lesson.quiz : kind === "lgs" ? lesson.lgsQuestions : kind === "reading" ? lesson.readQuestions : lesson.practiceB;
+      const kind = form.dataset.kind;
+      const items = kind === "quiz" ? lesson.quiz : kind === "lgs" ? lesson.lgsQuestions : kind === "vocabulary" ? lesson.vocabularyPractice : kind === "reading-extra" ? lesson.extraReadings[Number(form.dataset.index)].questions : kind === "reading" ? lesson.readQuestions : lesson.practiceB;
       let score=0;
       items.forEach((item,i) => {
         const selected=form.querySelector(`input[name="${lesson.id}-${i}"]:checked`);
@@ -162,6 +183,8 @@
       form.querySelector(".result-slot").innerHTML=`<div class="quiz-result"><strong>${score} / ${items.length}</strong><p>${kind==="quiz"?(score>=7?"Tebrikler, bu üniteyi tamamladın!":"İpuçlarını gözden geçirip testi yeniden çözebilirsin."):"Yanıtlarını açıklamalarla birlikte gözden geçir."}</p></div>`;
       if(kind==="quiz") setQuizBest(lesson,score);
       else if(kind==="lgs") setLgsBest(lesson,score);
+      else if(kind==="vocabulary") setVocabBest(lesson,score);
+      else if(kind==="reading-extra"&&score===items.length) reward(lesson.id,`reading-extra-${form.dataset.index}-perfect`,5,"Okuma alıştırması tamamlandı! +5 puan");
       else if(score===items.length) reward(lesson.id,`${kind}-perfect`,5,"Kusursuz çalışma! +5 puan");
       updateProgressUI();
     }));

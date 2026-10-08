@@ -1,6 +1,6 @@
 # English 8 — Dönem 1
 
-A static English learning site for Turkish 8th-grade learners. It includes a course home page and five unit folders, with expanded grammar notes, vocabulary, reading checks, speaking prompts, two exercise sets, a scored unit test, 10 original LGS-style questions, study tips, and a matching game in each unit.
+A static English learning site for Turkish 8th-grade learners. It includes a course home page and five unit folders, with expanded grammar notes, vocabulary challenges, three reading passages with comprehension questions, guided speaking tasks, two exercise sets, a scored unit test, 10 original LGS-style questions, study tips, and a matching game in each unit.
 
 ## Run locally
 
@@ -16,7 +16,7 @@ Open [http://localhost:4173](http://localhost:4173) in a browser. No build step 
 
 - `index.html` — course home
 - `unit-1-friendship/` through `unit-5-the-internet/` — individual unit pages
-- `assets/lessons.js` — lesson content and answer keys
+- `assets/lessons.js` — lesson content, speaking tasks, and answer keys
 - `assets/app.js` — shared rendering, scoring, and local progress
 - `assets/site.css` — responsive styles
 

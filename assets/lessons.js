@@ -188,7 +188,169 @@ const lgs = {
   ]
 };
 
+const extraReadings = {
+  friendship: [
+    { title: "A New Student in the Art Club", text: "On Tuesday, Ada meets Nil, a new student in her class. Ada says, ‘Would you like to join our art club after school?’ Nil says she would love to, but she has a dentist appointment at four. Ada suggests Thursday instead. Nil accepts and offers to bring coloured pencils. They exchange phone numbers and agree to meet in front of the library.", questions: [
+      ["What does Ada invite Nil to do?",["Join the art club","Go to the dentist","Visit the library on Tuesday","Buy a phone"],0,"Ada, Nil'i okul sonrası sanat kulübüne davet ediyor."],
+      ["Why can't Nil go on Tuesday?",["She has a dentist appointment.","She has to cook dinner.","She doesn't like art.","She is visiting her cousin."],0,"Nil saat dörtte dişçi randevusu olduğunu söylüyor."],
+      ["What does Nil offer to bring?",["A camera","Coloured pencils","A cake","A board game"],1,"Nil renkli kalem getirmeyi teklif ediyor."]
+    ]},
+    { title: "The Class Picnic Plan", text: "A group of classmates plans a picnic for Saturday. The weather report says it will be sunny, so they choose the park near the lake. Eren can bring a ball, and Selin offers to make sandwiches. Mert is sorry because he has a family visit in the morning. He says he can come after lunch. His friends agree to meet at the park entrance at two o'clock.", questions: [
+      ["Where will the classmates meet?",["At the cinema","At the park entrance","At Eren's home","At school"],1,"Metinde park girişinde buluşacakları belirtiliyor."],
+      ["What will Selin bring?",["A ball","Juice","Sandwiches","A camera"],2,"Selin sandviç hazırlamayı teklif ediyor."],
+      ["When can Mert join them?",["Before breakfast","After lunch","At seven in the morning","On Sunday"],1,"Mert aile ziyareti nedeniyle öğle yemeğinden sonra gelebilecek."]
+    ]}
+  ],
+  "teen-life": [
+    { title: "A Balanced School Day", text: "Zeynep gets up at half past six on weekdays. She usually walks to school with her sister. After school, she has a snack and studies for an hour. She attends a dance class on Mondays and Wednesdays. On other days, she reads comics or helps her family. She rarely uses her phone while studying because she wants to finish her homework on time.", questions: [
+      ["How does Zeynep go to school?",["By bus","On foot with her sister","By car","By bike"],1,"Zeynep kız kardeşiyle okula yürüyor."],
+      ["When does she attend dance class?",["Every weekday","On Mondays and Wednesdays","At weekends","On Fridays only"],1,"Dans kursuna pazartesi ve çarşamba katılıyor."],
+      ["Why does she rarely use her phone while studying?",["She wants to finish homework on time.","Her phone is broken.","She doesn't like music.","She is at a dance class."],0,"Ödevini zamanında bitirmek istediği için telefonu nadiren kullanıyor."]
+    ]},
+    { title: "What Do They Enjoy?", text: "Three friends talk about their free time. Bora enjoys playing chess, but he doesn't like watching football. İlayda loves taking photos of nature and often shares them with her family. Kerem prefers cycling to running because it is more relaxing for him. At weekends, the friends sometimes meet at the park and try one another's hobbies.", questions: [
+      ["What does Bora enjoy?",["Taking photos","Playing chess","Running","Watching football"],1,"Bora satranç oynamaktan hoşlanıyor."],
+      ["What does İlayda often photograph?",["Nature","Football matches","Food recipes","School books"],0,"İlayda doğa fotoğrafları çekmeyi seviyor."],
+      ["Why does Kerem prefer cycling?",["It is more relaxing.","It is cheaper than chess.","His friends dislike it.","He has a new camera."],0,"Kerem bisiklet sürmenin daha rahatlatıcı olduğunu belirtiyor."]
+    ]}
+  ],
+  kitchen: [
+    { title: "A Fruit Yogurt Bowl", text: "First, wash an apple and a handful of grapes. Cut the apple into small pieces. Put the fruit in a bowl and add a cup of yoghurt. Next, sprinkle a few nuts on top. Mix everything gently with a spoon. Finally, serve the bowl cold. Ask an adult for help if you need to use a sharp knife.", questions: [
+      ["What do you do after washing the apple?",["Bake it","Cut it into small pieces","Boil it","Add it to a pan"],1,"Tarifte elma yıkandıktan sonra küçük parçalara kesiliyor."],
+      ["How much yoghurt do you add?",["A cup","A slice","A handful","Two bottles"],0,"Tarif bir bardak yoğurt eklenmesini söylüyor."],
+      ["What should you do before using a sharp knife?",["Ask an adult for help.","Turn on the oven.","Add some sugar.","Serve the bowl."],0,"Güvenlik uyarısı keskin bıçak kullanırken yetişkinden yardım istemektir."]
+    ]},
+    { title: "Making a Cheese Toast", text: "To make a cheese toast, place two slices of bread on a clean plate. Put some cheese between them. Ask an adult to heat the sandwich in a toaster. Wait until the bread turns golden. Don't touch the hot toaster. Finally, put the toast on a plate and cut it in half with help.", questions: [
+      ["Where do you put the cheese?",["Between the bread slices","Under the toaster","In a glass","On the floor"],0,"Peynir iki ekmek diliminin arasına konur."],
+      ["Who should heat the sandwich?",["A young child alone","An adult","A pet","A classmate at school"],1,"Metin, tost makinesini ısıtmak için bir yetişkinden yardım istiyor."],
+      ["Which step is last?",["Place bread on a plate","Add cheese","Heat the sandwich","Put it on a plate and cut it with help"],3,"Son adım tabağa koyup yardım alarak ikiye kesmektir."]
+    ]}
+  ],
+  phone: [
+    { title: "A Call About the School Play", text: "‘Hello, may I speak to Duru, please?’ asks Aslı. Duru's father says she is at the library. Aslı explains that she is calling about the school play. The rehearsal starts at half past three tomorrow, and students should bring their costumes. Aslı leaves her number and asks Duru to call back. Her father says, ‘Of course. I'll give her the message.’", questions: [
+      ["Why is Aslı calling?",["About the school play","To order a costume","To cancel a library card","To invite Duru to dinner"],0,"Aslı arama nedeninin okul oyunu olduğunu açıklıyor."],
+      ["What should students bring?",["Their costumes","A recipe","A phone charger","A ball"],0,"Öğrencilerin kostümlerini getirmesi gerekiyor."],
+      ["What does Aslı ask Duru to do?",["Meet her at the park","Call her back","Bring a cake","Go home early"],1,"Aslı Duru'dan kendisini geri aramasını istiyor."]
+    ]},
+    { title: "The Message Notebook", text: "The school secretary writes down three calls. At 10:15, Ege calls to ask about the English homework. At 10:30, Melis calls because she will be late for the club meeting. At 11:00, Ozan calls about a lost water bottle. The secretary writes each caller's name, reason and important detail so the teacher can return the calls.", questions: [
+      ["Who asks about English homework?",["Ege","Melis","Ozan","The teacher"],0,"10:15 aramasında Ege İngilizce ödevini soruyor."],
+      ["Why does Melis call?",["She lost her bottle.","She will be late for the club meeting.","She needs the homework.","She wants to cancel a lesson."],1,"Melis kulüp toplantısına geç kalacağını bildiriyor."],
+      ["What details does the secretary record?",["Name, reason and important detail","Only the phone number","The caller's favourite subject","Only the time"],0,"Sekreter isim, arama nedeni ve önemli bilgiyi not ediyor."]
+    ]}
+  ],
+  internet: [
+    { title: "A Careful Search", text: "Mert needs information for a science project. He searches for the topic and finds many pages. One page has no author or date, so he doesn't use it. He chooses an article from a science museum and checks the facts on another reliable website. He writes the names of both sources in his project. He never shares his account password while working online.", questions: [
+      ["Why doesn't Mert use one of the pages?",["It has no author or date.","It is from a museum.","It has too many facts.","It asks a science question."],0,"Yazar veya tarih bilgisi bulunmayan sayfayı kullanmıyor."],
+      ["How does he check the information?",["He checks another reliable website.","He asks a stranger in a chat.","He shares his password.","He uses only the first page."],0,"Bilgiyi başka güvenilir bir internet sitesinde kontrol ediyor."],
+      ["What does Mert keep private?",["His project title","His account password","The museum name","His science topic"],1,"Mert çevrim içi çalışırken hesap şifresini paylaşmıyor."]
+    ]},
+    { title: "A Kind and Safe Chat", text: "A student sees an unkind comment about a classmate in a group chat. She doesn't forward it or answer with another unkind message. She saves a screenshot and tells a trusted teacher. The teacher reports the comment and speaks to the students. The class agrees to keep personal information private and to be respectful online.", questions: [
+      ["What does the student do first?",["She forwards the comment.","She replies with an insult.","She saves a screenshot and tells a teacher.","She posts her address."],2,"Güvenli davranış olarak ekran görüntüsü alıp öğretmene söylüyor."],
+      ["Who reports the comment?",["The teacher","A stranger","The student in another class","Nobody"],0,"Metinde yorumu öğretmenin bildirdiği yazıyor."],
+      ["What does the class agree to do?",["Share passwords","Keep personal information private","Forward every comment","Use unkind words"],1,"Sınıf kişisel bilgileri gizli tutmayı ve saygılı olmayı kabul ediyor."]
+    ]}
+  ]
+};
+
+const vocabularyPractice = {
+  friendship: [
+    ["‘Available’ means ___.",["busy","free to do something","honest","upset"],1,"Available = müsait."],
+    ["Choose the phrase that means ‘davet etmek’.",["look after","invite","get along","call back"],1,"Invite = davet etmek."],
+    ["A person you can trust is ___.",["reliable","rude","unavailable","careless"],0,"Reliable = güvenilir."],
+    ["‘That sounds great!’ is usually a way to ___.",["accept an invitation","give an excuse","end a phone call","ask for directions"],0,"Bu ifade daveti kabul ederken kullanılabilir."],
+    ["Choose the correct meaning of ‘refuse’.",["kabul etmek","reddetmek","desteklemek","tanışmak"],1,"Refuse = reddetmek."],
+    ["Which word means ‘özür dilemek’?",["support","apologize","prefer","invite"],1,"Apologize = özür dilemek."],
+    ["‘My buddy helped me.’ Buddy means ___.",["yakın arkadaş","öğretmen","komşu","yabancı"],0,"Buddy = yakın arkadaş."],
+    ["Choose the best completion: Thanks for the ___.",["invitation","apologize","honest","trust"],0,"Invitation = davet."],
+    ["A good friend tells the truth. A good friend is ___.",["honest","busy","rare","available"],0,"Honest = dürüst."],
+    ["‘We support each other’ means ___.",["Birbirimizi destekleriz","Birbirimizi davet ederiz","Birbirimizi reddederiz","Birbirimizi bekleriz"],0,"Support each other = birbirini desteklemek."]
+  ],
+  "teen-life": [
+    ["‘Rarely’ means ___.",["her zaman","genellikle","nadiren","asla"],2,"Rarely = nadiren."],
+    ["Choose the verb phrase meaning ‘vakit geçirmek’.",["hang out","get up","call back","look for"],0,"Hang out = vakit geçirmek."],
+    ["An activity you do every day is part of your ___.",["routine","message","recipe","account"],0,"Routine = rutin."],
+    ["‘Attend a course’ means ___.",["bir kursa katılmak","kursu iptal etmek","evde kalmak","birini davet etmek"],0,"Attend = katılmak."],
+    ["A guitar is a musical ___.",["instrument","ingredient","website","excuse"],0,"Instrument = müzik aleti."],
+    ["Choose the correct meaning of ‘prefer’.",["tercih etmek","paylaşmak","aramak","karıştırmak"],0,"Prefer = tercih etmek."],
+    ["‘Spend time with my family’ means ___.",["Ailemle zaman geçirmek","Ailemi aramak","Aileme mesaj bırakmak","Ailem için yemek pişirmek"],0,"Spend time = zaman geçirmek."],
+    ["Which word means ‘günlük’?",["daily","weekly","rarely","busy"],0,"Daily = günlük."],
+    ["Which is a free-time activity?",["cycling","home address","password","appointment"],0,"Cycling = bisiklet sürmek; bir boş zaman etkinliğidir."],
+    ["‘She usually walks to school.’ Usually means ___.",["genellikle","nadiren","asla","şu anda"],0,"Usually = genellikle." ]
+  ],
+  kitchen: [
+    ["‘Chop the onion’ means ___.",["soğanı doğra","soğanı dondur","soğanı yıka","soğanı servis et"],0,"Chop = doğramak."],
+    ["Which verb means ‘kaynatmak’?",["boil","bake","grate","pour"],0,"Boil = kaynatmak."],
+    ["You use a grater to ___.",["grate cheese","boil water","bake bread","serve soup"],0,"Grate = rendelemek."],
+    ["‘A slice of bread’ means ___.",["bir dilim ekmek","bir bardak ekmek","bir avuç ekmek","bir kaşık ekmek"],0,"A slice of = bir dilim."],
+    ["Which tool do you use to stir soup?",["a spoon","a grater","an oven","a knife"],0,"Soup karıştırmak için kaşık kullanılır."],
+    ["‘Ingredient’ means ___.",["malzeme","tarif","tabak","yemek"],0,"Ingredient = malzeme."],
+    ["Where do you bake a cake?",["in an oven","in a bowl","on a spoon","in a fridge"],0,"Bake = fırında pişirmek."],
+    ["‘Pour the juice’ means ___.",["meyve suyunu dök","meyve suyunu rendele","meyve suyunu kızart","meyve suyunu doğra"],0,"Pour = dökmek."],
+    ["Which word means ‘karıştırmak’?",["mix","slice","boil","serve"],0,"Mix = karıştırmak."],
+    ["‘Finally’ is used for ___.",["the last step","the first ingredient","a kitchen tool","a measurement"],0,"Finally = son olarak."]
+  ],
+  phone: [
+    ["‘Call back’ means ___.",["geri aramak","beklemek","mesaj yazmak","telefonu kapatmak"],0,"Call back = geri aramak."],
+    ["If someone is ‘available’, they are ___.",["müsait","meşgul","üzgün","kayıp"],0,"Available = müsait."],
+    ["‘Hold on, please’ means ___.",["Lütfen hatta bekleyin","Lütfen beni arayın","Lütfen mesaj bırakın","Lütfen telefonu kapatın"],0,"Hold on = hatta beklemek."],
+    ["You can ask ‘Can I take a ___?’",["message","recipe","website","routine"],0,"Take a message = mesaj almak."],
+    ["‘Reason for your call’ means ___.",["arama nedenin","telefon numaran","arama saatin","arayan arkadaşın"],0,"Reason = neden."],
+    ["Which phrase introduces yourself on the phone?",["This is Ece speaking.","Hold on the internet.","I take a recipe.","I am busy line."],0,"This is ... speaking telefon tanıtım kalıbıdır."],
+    ["A ‘busy line’ means ___.",["hat meşgul","telefon yeni","mesaj hazır","arayan müsait"],0,"Busy line = meşgul hat."],
+    ["‘Wrong number’ means ___.",["yanlış numara","geri arama","arama nedeni","sesli mesaj"],0,"Wrong number = yanlış numara."],
+    ["‘Leave a message’ means ___.",["mesaj bırakmak","hattı bekletmek","telefonu bağlamak","numarayı çevirmek"],0,"Leave a message = mesaj bırakmak."],
+    ["A person who makes a phone call is a ___.",["caller","ingredient","buddy","website"],0,"Caller = arayan kişi."]
+  ],
+  internet: [
+    ["‘Reliable’ means ___.",["güvenilir","kişisel","meşgul","çevrim dışı"],0,"Reliable = güvenilir."],
+    ["You use a ___ to protect an account.",["password","recipe","slice","routine"],0,"Password = şifre."],
+    ["‘Privacy’ means ___.",["gizlilik","ekran süresi","arama motoru","indirme"],0,"Privacy = gizlilik."],
+    ["Which phrase means ‘kişisel bilgi’?",["personal information","search engine","screen time","reliable source"],0,"Personal information = kişisel bilgi."],
+    ["A ‘search engine’ helps you ___.",["find information online","cook a meal","leave a phone message","meet a friend"],0,"Search engine = arama motoru."],
+    ["‘Download a file’ means ___.",["bir dosya indirmek","dosyayı silmek","hesabı korumak","mesajı bildirmek"],0,"Download = indirmek."],
+    ["‘Screen time’ means ___.",["ekran süresi","şifre","güvenilir kaynak","kullanıcı hesabı"],0,"Screen time = ekran süresi."],
+    ["If you ‘report’ an unsafe message, you ___.",["güvendiğin bir kişiye bildirirsin","şifreni paylaşırsın","mesajı herkese gönderirsin","yanıt vermek zorunda kalırsın"],0,"Report = bildirmek."],
+    ["‘Cyberbullying’ happens ___.",["online","in a recipe","in a phone number","at a kitchen table"],0,"Cyberbullying = çevrim içi zorbalık."],
+    ["A private account should be seen by ___.",["only approved people","every stranger","all websites","unknown callers"],0,"Private account yalnızca izin verilen kişilerce görülmelidir."]
+  ]
+};
+
+const speakingExercises = {
+  friendship: [
+    { title: "Weekend invitation", situation: "Bir arkadaşını hafta sonu etkinliğine çağır.", task: "Etkinlik, gün ve saati söyle. Arkadaşın kabul etsin; ne getirebileceğini sor.", phrases: "Would you like to...? · That sounds great! · I can bring...", challenge: "En az dört cümlelik kısa bir diyalog kur." },
+    { title: "A polite refusal", situation: "Arkadaşın seni sinemaya davet ediyor; o gün meşgulsün.", task: "Nazikçe reddet, gerçekçi bir neden ver ve başka bir gün öner.", phrases: "I'd love to, but... · I'm afraid I can't because... · How about...?", challenge: "Cevabında hem bir neden hem yeni bir teklif olsun." },
+    { title: "Plan together", situation: "İki arkadaş olarak sınıf kutlaması planlayın.", task: "Üç etkinlik önerin, tercihlerinizi karşılaştırın ve birinde anlaşın.", phrases: "Why don't we...? · How about...? · I prefer... · Good idea!", challenge: "Bir öneriyi nazikçe reddedip nedenini açıkla." },
+    { title: "Friendship interview", situation: "Bir arkadaşınla iyi arkadaşlık hakkında röportaj yap.", task: "Birbirinize üç soru sorun ve yanıtları kendi cümlelerinizle özetleyin.", phrases: "What makes a good friend? · I think... · I agree because...", challenge: "Trust, honest veya support kelimelerinden ikisini kullan." }
+  ],
+  "teen-life": [
+    { title: "My weekday routine", situation: "Yeni bir sınıf arkadaşına okul gününü anlat.", task: "Sabah, okul sonrası ve akşam yaptığın birer etkinliği sırayla anlat.", phrases: "I usually... · After school... · In the evening...", challenge: "En az iki sıklık zarfı kullan." },
+    { title: "Free-time survey", situation: "Bir sınıf arkadaşına boş zaman alışkanlıklarını sor.", task: "Üç Do you...? / How often...? sorusu sor ve cevapları aktar.", phrases: "Do you enjoy...? · How often do you...? · He/She usually...", challenge: "Bir olumlu, bir olumsuz kısa cevap ver." },
+    { title: "Choose an activity", situation: "Arkadaşınla iki hafta sonu etkinliği arasında karar ver.", task: "İki etkinliğin artılarını söyle ve tercihini açıkla.", phrases: "I enjoy... · I prefer A to B because... · What about you?", challenge: "Enjoy + fiil-ing ve prefer A to B kalıplarını kullan." },
+    { title: "Guess the habit", situation: "Bir arkadaşın rutinini üç ipucuyla tarif et; eşin tahmin etsin.", task: "Saat, gün veya sıklık bilgisiyle bir etkinliği betimle.", phrases: "He/She always... · He/She never... · Does he/she...?", challenge: "Bir Does sorusu sor ve kısa cevapla yanıtla." }
+  ],
+  kitchen: [
+    { title: "Teach a simple recipe", situation: "Bir arkadaşına sevdiğin kolay bir yiyeceğin tarifini öğret.", task: "Üç malzeme ve en az dört işlem adımı söyle.", phrases: "First... · Next... · After that... · Finally...", challenge: "En az bir ölçü ifadesi kullan: a cup of / a slice of." },
+    { title: "Kitchen safety role-play", situation: "Bir kişi yemek hazırlıyor, diğeri güvenlik konusunda yardım ediyor.", task: "İki güvenli yönerge ver ve bir tehlikeli davranışı durdur.", phrases: "Please... · Don't touch... · Ask an adult...", challenge: "Bir olumlu, bir olumsuz emir cümlesi kullan." },
+    { title: "At the market", situation: "Tarif için gereken malzemeleri birlikte satın alın.", task: "En az dört malzemeyi ve miktarını sorup cevaplayın.", phrases: "How many...? · How much...? · We need...", challenge: "Sayılabilen bir isimle many, sayılamayanla much kullan." },
+    { title: "Put the recipe in order", situation: "Tarif adımları karışmış; eşinle doğru sırayı bulup anlat.", task: "Üç adımı sıralayın ve neden o sırada olduklarını açıklayın.", phrases: "First we... · Then we... · We do this before...", challenge: "Finally ile son adımı net biçimde belirt." }
+  ],
+  phone: [
+    { title: "Call a classmate", situation: "Bir sınıf arkadaşını ara ve ödevle ilgili bilgi iste.", task: "Kendini tanıt, arkadaşını iste ve arama nedenini açıkla.", phrases: "Hello, this is... · May I speak to...? · I'm calling about...", challenge: "Please ve May I ile kibar bir istek kur." },
+    { title: "Take a message", situation: "Arkadaşının kardeşi telefonu açıyor; arkadaşın evde değil.", task: "Adını, arama nedenini, önemli bir ayrıntıyı söyle ve geri arama iste.", phrases: "Can I leave a message? · Please tell... · Call me back at...", challenge: "Mesajında isim, neden ve zaman bilgisi bulunsun." },
+    { title: "Answer the phone", situation: "Sen evde telefonu açıyorsun ve arayan kişi bir öğretmeni istiyor.", task: "Nazikçe yanıt ver, öğretmenin müsait olmadığını söyle ve mesaj teklif et.", phrases: "Hello, this is... · I'm afraid... · Can I take a message?", challenge: "Görüşmeyi I'll + yalın fiil kullanarak bitir." },
+    { title: "Wrong number", situation: "Bir kişi yanlış numarayı arıyor.", task: "Karşılıklı kısa bir telefon konuşması yapıp kibarca özür dileyin.", phrases: "I think you have the wrong number. · I'm sorry. · Goodbye.", challenge: "En az dört replikle rol oyununu tamamla." }
+  ],
+  internet: [
+    { title: "Talk about your online habits", situation: "Bir arkadaşınla interneti ne için ve ne sıklıkta kullandığını konuş.", task: "İki çevrim içi etkinlik ve bir çevrim dışı etkinlik anlat.", phrases: "I often... · How often do you...? · I rarely...", challenge: "Bir sıklık sorusu sorup kısa cevap ver." },
+    { title: "Give safety advice", situation: "Arkadaşın tanımadığı birinden mesaj aldı ve ne yapacağını bilmiyor.", task: "Üç güvenli davranış öner ve bir yapılmaması gerekeni söyle.", phrases: "You should... · You shouldn't... · Tell a trusted adult.", challenge: "Should ve shouldn't sonrasında yalın fiil kullan." },
+    { title: "Check a source", situation: "Bir proje için iki internet kaynağından hangisinin güvenilir olduğunu tartışın.", task: "Yazar, tarih ve kaynak bilgilerini karşılaştırıp seçiminizi açıklayın.", phrases: "This source is reliable because... · I would check...", challenge: "Because ile bir gerekçe ver." },
+    { title: "Be a helpful bystander", situation: "Grup sohbetinde bir arkadaşına kırıcı bir mesaj gönderildiğini gördün.", task: "Güvenli ve saygılı biçimde ne yapacağını canlandır.", phrases: "I wouldn't forward it. · I would tell... · We should be respectful.", challenge: "Kişisel bilgilerin neden gizli kalması gerektiğini açıkla." }
+  ]
+};
+
 window.LESSONS.forEach(lesson => {
   lesson.grammar.push(...extraGrammar[lesson.id]);
   lesson.lgsQuestions = lgs[lesson.id];
+  lesson.extraReadings = extraReadings[lesson.id];
+  lesson.vocabularyPractice = vocabularyPractice[lesson.id];
+  lesson.speakingExercises = speakingExercises[lesson.id];
 });
