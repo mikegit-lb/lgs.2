@@ -417,7 +417,51 @@ speakingExercises["teen-life"].push(
   { title: "Likes, dislikes and a new hobby", situation: "Bir arkadaşın yeni bir hobi arıyor. İkiniz seçenekleri konuşup öneri yapın.", task: "Üç etkinliği karşılaştırın. Her kişi bir şeyi sevdiğini, bir şeyi sevmediğini söylesin; sonunda ortak bir hobi seçin.", phrases: "I like... · I don't like... · Do you enjoy...? · He/She prefers... · Let's try...", challenge: "Bir Like/Doesn't like ifadesiyle günlük bir rutin cümlesi de ekle.", model: "I like cycling, but I don't like running. My friend likes taking photos. She doesn't enjoy team sports. We both enjoy walking in the park, so we go there after school." }
 );
 
+const sprintVocabulary = {
+  friendship: [
+    ["close friend","yakın arkadaş","My close friend always listens to me."],["get on well","iyi anlaşmak","We get on well with our classmates."],["count on","güvenmek","I can count on my best friend."],
+    ["keep a secret","sır saklamak","A good friend can keep a secret."],["invite over","eve davet etmek","I want to invite my cousin over."],["make plans","plan yapmak","Let's make plans for Saturday."],
+    ["get together","bir araya gelmek","We get together after school."],["celebrate","kutlamak","We celebrate her birthday together."],["have fun","eğlenmek","We have fun at the park."],
+    ["make up","barışmak","They make up after an argument."],["share interests","ortak ilgi alanlarını paylaşmak","We share interests in music and sport."],["be kind to","nazik davranmak","Please be kind to the new student."],
+    ["respect","saygı göstermek","We respect each other's choices."],["dependable","güvenilir","A dependable friend keeps promises."],["in common","ortak yönü olmak","We have a lot in common."],
+    ["argue","tartışmak","Friends sometimes argue about small things."],["forgive","affetmek","I forgive my friend for the mistake."],["cheer up","neşelendirmek","A funny story can cheer up your friend."]
+  ],
+  "teen-life": [
+    ["wake up","uyanmak","I wake up at seven on school days."],["get dressed","giyinmek","She gets dressed before breakfast."],["do homework","ödev yapmak","He does homework after school."],
+    ["go jogging","koşuya çıkmak","I go jogging with my sister."],["go cycling","bisiklet sürmeye gitmek","We go cycling at weekends."],["play basketball","basketbol oynamak","Mert plays basketball on Tuesdays."],
+    ["draw pictures","resim çizmek","Ece draws pictures in her free time."],["listen to music","müzik dinlemek","I listen to music on the bus."],["read comics","çizgi roman okumak","He reads comics before bed."],
+    ["watch a series","dizi izlemek","We watch a series on Friday evenings."],["take photos","fotoğraf çekmek","My friend takes photos of nature."],["spend time outdoors","açık havada vakit geçirmek","Teenagers spend time outdoors after school."],
+    ["join a club","kulübe katılmak","She joins the drama club this year."],["meet up with friends","arkadaşlarla buluşmak","I meet up with friends on Saturday."],["practice a sport","spor yapmak","He practices a sport twice a week."],
+    ["do puzzles","yapboz çözmek","My brother does puzzles at home."],["play an instrument","müzik aleti çalmak","I play an instrument every day."],["dislike","hoşlanmamak","I dislike getting up late on school days."]
+  ],
+  kitchen: [
+    ["measure","ölçmek","Measure two cups of flour."],["whisk","çırpmak","Whisk the eggs in a bowl."],["peel","soymak","Peel the potatoes carefully."],
+    ["rinse","durulamak","Rinse the rice with clean water."],["dice","küp küp doğramak","Dice the carrots into small pieces."],["knead","yoğurmak","Knead the dough for five minutes."],
+    ["preheat","önceden ısıtmak","Preheat the oven to 180 degrees."],["roast","fırında kızartmak","Roast the vegetables in the oven."],["steam","buharda pişirmek","Steam the broccoli until it is soft."],
+    ["remove","çıkarmak","Remove the pan from the cooker."],["saucepan","tencere","Put the soup in a saucepan."],["frying pan","tava","Heat some oil in a frying pan."],
+    ["chopping board","kesme tahtası","Cut the vegetables on a chopping board."],["teaspoon","çay kaşığı","Add a teaspoon of salt."],["a pinch of","bir tutam","Add a pinch of pepper."],
+    ["a handful of","bir avuç","Use a handful of nuts."],["utensil","mutfak gereci","A wooden spoon is a kitchen utensil."],["leftovers","artan yemekler","Keep the leftovers in the fridge."]
+  ],
+  phone: [
+    ["hang up","telefonu kapatmak","Don't hang up; I need to ask one more thing."],["dial","numara çevirmek","Please dial the number slowly."],["pick up","telefonu açmak","Can you pick up the phone, please?"],
+    ["put through","telefonda bağlamak","I'll put you through to the office."],["voicemail","sesli mesaj","Please leave a voicemail after the beep."],["extension","dahili numara","Her extension is 204."],
+    ["caller ID","arayan kimliği","The caller ID shows a school number."],["signal","sinyal","I can't hear you because the signal is weak."],["on another line","başka bir görüşmede","The manager is on another line."],
+    ["get back to","daha sonra geri dönüş yapmak","I'll get back to you this afternoon."],["phone directory","telefon rehberi","Look up the number in the phone directory."],["voicemail message","sesli mesaj","I left a short voicemail message."],
+    ["line is free","hat boş","The line is free now; you can call."],["take a call","arama cevaplamak","She can't take a call during class."],["transfer a call","aramayı aktarmak","The secretary can transfer the call."],
+    ["make a call","telefon etmek","I need to make a call about the trip."],["call log","arama kaydı","Check the call log for the time."],["voicemail greeting","sesli mesaj anonsu","Record a short voicemail greeting."]
+  ],
+  internet: [
+    ["log in","oturum açmak","Log in with your school account."],["log out","oturumu kapatmak","Log out when you use a shared computer."],["username","kullanıcı adı","Choose a username that doesn't show your full name."],
+    ["secure","güvenli","Use a secure connection for online study."],["privacy settings","gizlilik ayarları","Check your privacy settings regularly."],["block","engellemek","Block an account that sends unsafe messages."],
+    ["user account","kullanıcı hesabı","Keep your user account private."],["web browser","internet tarayıcısı","Open the lesson in a web browser."],["link","bağlantı","Don't click an unknown link."],
+    ["attachment","ek dosya","Ask an adult before opening an attachment."],["online profile","çevrim içi profil","Don't add your address to an online profile."],["personal data","kişisel veri","Your personal data should stay private."],
+    ["screen break","ekran molası","Take a screen break after studying."],["device","cihaz","Keep your device updated."],["two-step verification","iki adımlı doğrulama","Two-step verification adds security to your account."],
+    ["trusted adult","güvenilir yetişkin","Talk to a trusted adult about a strange message."],["source","kaynak","Check the source before you share information."],["search online","internette arama yapmak","I search online for my science project."]
+  ]
+};
+
 window.LESSONS.forEach(lesson => {
+  lesson.vocab.push(...sprintVocabulary[lesson.id]);
   lesson.grammar.push(...extraGrammar[lesson.id]);
   lesson.lgsQuestions = lgs[lesson.id];
   lesson.lgsQuestions.push(...moreLgs[lesson.id]);
