@@ -1,6 +1,6 @@
 # English 8 — Dönem 1
 
-A static English learning site for Turkish 8th-grade learners. It includes a course home page and five unit folders, with expanded grammar notes, vocabulary challenges, three reading passages with comprehension questions, guided speaking tasks, two exercise sets, a scored unit test, 10 original LGS-style questions, study tips, and a matching game in each unit.
+A static English learning site for Turkish 8th-grade learners. It includes a course home page and five unit folders, with expanded grammar notes, vocabulary challenges, three reading passages with comprehension questions, guided speaking tasks, two exercise sets, a scored unit test, 20 original LGS-style questions, study tips, a matching game, and a five-round vocabulary sprint in each unit. Teen Life includes extra model-supported daily-hobby speaking practice in the Simple Present.
 
 ## Run locally
 
@@ -20,4 +20,4 @@ Open [http://localhost:4173](http://localhost:4173) in a browser. No build step 
 - `assets/app.js` — shared rendering, scoring, and local progress
 - `assets/site.css` — responsive styles
 
-Test and LGS best scores, points, and game matches are stored separately in the browser's local storage on the learner's device.
+Test and LGS best scores, points, game matches, and page-specific notes are stored separately in the browser's local storage on the learner's device.
