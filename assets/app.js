@@ -24,10 +24,11 @@
   const unitProgress = id => {
     const all = readProgress();
     if (!all.units) all.units = {};
-    if (!all.units[id]) all.units[id] = { points: 0, rewards: [], quizBest: 0, lgsBest: 0, vocabBest: 0, sprintBest: 0, questBest: 0, mastered: false, matched: [] };
+    if (!all.units[id]) all.units[id] = { points: 0, rewards: [], quizBest: 0, lgsBest: 0, examBest: 0, vocabBest: 0, sprintBest: 0, questBest: 0, mastered: false, matched: [] };
     // Migrate existing browser progress without changing any saved scores.
     let migrated = false;
     if (all.units[id].lgsBest == null) { all.units[id].lgsBest = 0; migrated = true; }
+    if (all.units[id].examBest == null) { all.units[id].examBest = 0; migrated = true; }
     if (all.units[id].vocabBest == null) { all.units[id].vocabBest = 0; migrated = true; }
     if (all.units[id].sprintBest == null) { all.units[id].sprintBest = 0; migrated = true; }
     if (all.units[id].questBest == null) { all.units[id].questBest = 0; migrated = true; }
@@ -88,6 +89,20 @@
     all.units[lesson.id] = current; writeProgress(all); updateProgressUI();
     const bestLabel = document.querySelector("[data-lgs-best]");
     if (bestLabel) bestLabel.textContent = current.lgsBest || 0;
+  }
+  function setExamBest(lesson, score) {
+    const all = readProgress(); all.units ||= {};
+    const current = all.units[lesson.id] || { points: 0, rewards: [], examBest: 0, mastered: false, matched: [] };
+    const oldBest = current.examBest || 0;
+    current.rewards ||= [];
+    if (score > oldBest) {
+      const gain = (score - oldBest) * 5;
+      current.examBest = score; current.points = (current.points || 0) + gain;
+      announce(`Yeni mini deneme rekoru! +${gain} puan`);
+    }
+    all.units[lesson.id] = current; writeProgress(all); updateProgressUI();
+    const bestLabel = document.querySelector("[data-exam-best]");
+    if (bestLabel) bestLabel.textContent = current.examBest || 0;
   }
   function setVocabBest(lesson, score) {
     const all = readProgress(); all.units ||= {};
@@ -215,7 +230,7 @@
       ${writing}
       <section class="lesson-section" id="practice">${sectionHead("05","More Exercises · Ek Alıştırmalar","Önce boşlukları doldur, sonra doğru seçeneği bul.")}<div class="practice-box"><h3>Set A · Complete the sentences</h3><p>İngilizce cevabını yaz ve kontrol et. Büyük / küçük harf farkı aranmaz.</p><form class="fill-form" data-id="${lesson.id}">${practiceA}<div class="action-row"><button class="primary-button" type="submit">Cevapları kontrol et</button><span class="feedback" aria-live="polite"></span></div></form></div><div class="practice-box"><h3>Set B · Choose the correct answer</h3><p>Her soruda bir doğru cevap var.</p>${renderQuizForm(lesson.practiceB,lesson.id,"Set B’yi kontrol et","practice")}</div></section>
       <section class="lesson-section" id="quiz">${sectionHead("06","Unit Test · Ünite Testi","10 soru · Her doğru cevap 1 puan. 7/10 ve üzeri üniteyi tamamlar.")}<div class="badge-note">En iyi sonuç: ${progress.quizBest || 0} / 10 · ${progress.points || 0} puan</div><div style="height:12px"></div>${renderQuizForm(lesson.quiz,lesson.id,"Testi bitir","quiz")}</section>
-      <section class="lesson-section" id="lgs">${sectionHead("07","LGS Practice · LGS Alıştırması",`${Math.ceil(lesson.lgsQuestions.length/2)} kısa senaryo · Her doğru cevap 1 puan.`)}<div class="badge-note">LGS en iyi sonuç: <strong data-lgs-best>${progress.lgsBest || 0}</strong> / ${lesson.lgsQuestions.length} · Ayrı kaydedilir</div><div style="height:12px"></div>${renderQuizForm(lesson.lgsQuestions,lesson.id,"LGS sorularını bitir","lgs")}</section>
+      <section class="lesson-section" id="lgs">${sectionHead("07","LGS Practice · LGS Alıştırması",`${Math.ceil(lesson.lgsQuestions.length/2)} kısa senaryo · Her doğru cevap 1 puan.`)}<article class="mini-exam-card"><div class="mini-exam-topline"><span class="exam-chip">5 SORULUK DENEME</span><span class="badge-note">Rekor: <strong data-exam-best>${progress.examBest || 0}</strong> / 5</span></div><h3>LGS Mini Deneme · Mini Mock Exam</h3><p>Bir metin veya bilgi kartından ipuçlarını bul. Doğrudan çevirmeye değil, anlamaya ve çıkarım yapmaya odaklan.</p>${renderQuizForm(lesson.examQuestions,lesson.id,"Mini denemeyi bitir","exam")}</article><div class="practice-heading lgs-bank-heading"><div><span class="activity-kicker">SORU BANKASI · ${lesson.lgsQuestions.length} SORU</span><h3>Topic Practice · Ünite Soru Bankası</h3><p>Farklı diyalog ve bilgi kartları üzerinde çalış; cevap açıklamalarını incele.</p></div><span class="badge-note">En iyi: <strong data-lgs-best>${progress.lgsBest || 0}</strong> / ${lesson.lgsQuestions.length}</span></div><div style="height:12px"></div>${renderQuizForm(lesson.lgsQuestions,lesson.id,"Soru bankasını bitir","lgs")}</section>
       <section class="lesson-section" id="tips">${sectionHead("08","Study Tips · İpuçları","Küçük hatırlatmalar daha doğru cümleler kurmana yardım eder.")}<ul class="tip-list">${tips}</ul></section>
       <section class="lesson-section" id="game">${sectionHead("09","Play & Learn · Oyun","Görev modu, kelime sprinti ve eşleştirme oyununda rozet ve öğrenme puanı topla.")}<div class="quest-game" data-quest-game data-id="${lesson.id}"><div class="quest-heading"><div><span class="activity-kicker">BOSS CHALLENGE · 10 SORU</span><h3>Unit Quest · Ünite Görevi</h3><p>Karışık LGS sorularında 3 canını koru. Seri yaptıkça XP çarpanın artsın.</p></div><span class="badge-note">Rekor: <strong data-quest-best>${progress.questBest || 0}</strong> / 10</span></div><div class="quest-content" data-quest-content><div class="quest-rules"><span>❤️ 3 can</span><span>⏱ 90 saniye</span><span>🔥 Seri bonusu</span></div><p>Doğru cevapta puan ve seri kazan; yanlış cevapta bir can kaybedersin. Bronz, gümüş veya altın rozet için oyna.</p><button class="primary-button" type="button" data-quest-start>Görevi başlat</button></div></div><div class="word-sprint" data-word-sprint data-id="${lesson.id}"><div class="sprint-heading"><div><span class="activity-kicker">30 KELİME · STREAK BONUSU</span><h3>Word Sprint · Kelime Sprinti</h3><p>30 kelimenin anlamını bul. Üç doğru cevaplık seride bonus XP kazan.</p></div><span class="badge-note">Rekor: <strong data-sprint-best>${progress.sprintBest || 0}</strong> / 30</span></div><div class="sprint-progress" aria-label="30 kelimelik sprint ilerlemesi"><span data-sprint-progress></span></div><div class="sprint-content" data-sprint-content><p>Her doğru cevap 10 XP, üçlü seri için +5 bonus XP. En iyi tur sayın kaydedilir.</p><button class="primary-button" type="button" data-sprint-start>30 kelimelik sprinti başlat</button></div></div><div class="game-panel"><p>${escapeHtml(lesson.game.prompt)} <strong>${matchedCount}/${lesson.game.pairs.length}</strong></p><div class="match-board" data-match-board data-id="${lesson.id}"><div class="match-column" aria-label="Kelimeler">${lesson.game.pairs.map(([left],i)=>`<button type="button" class="match-button ${gameSaved.has(String(i))?"matched":""}" data-side="left" data-index="${i}" ${gameSaved.has(String(i))?"disabled":""}>${escapeHtml(left)}</button>`).join("")}</div><div class="match-column" aria-label="Anlamlar">${lesson.game.pairs.map((pair,i)=>{const original=lesson.game.pairs.length-1-i;return `<button type="button" class="match-button ${gameSaved.has(String(original))?"matched":""}" data-side="right" data-index="${original}" ${gameSaved.has(String(original))?"disabled":""}>${escapeHtml(pair[1])}</button>`;}).join("")}</div></div><div class="game-feedback" aria-live="polite">${matchedCount===lesson.game.pairs.length?"Harika! Tüm eşleşmeleri tamamladın.":"Önce soldan bir kelime, sonra sağdan anlamını seç."}</div></div></section>
       <hr class="section-rule"><a class="home-start" href="${lesson.number<5?`../${paths[lessons[lesson.number].id]}`:"../"}">${lesson.number<5?"Sonraki üniteye geç":"Kurs ana sayfasına dön"}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></a>`;
@@ -232,7 +247,7 @@
     document.querySelectorAll(".assessment-form").forEach(form => form.addEventListener("submit", event => {
       event.preventDefault();
       const kind = form.dataset.kind;
-      const items = kind === "quiz" ? lesson.quiz : kind === "lgs" ? lesson.lgsQuestions : kind === "vocabulary" ? lesson.vocabularyPractice : kind === "reading-extra" ? lesson.extraReadings[Number(form.dataset.index)].questions : kind === "reading" ? lesson.readQuestions : lesson.practiceB;
+      const items = kind === "quiz" ? lesson.quiz : kind === "lgs" ? lesson.lgsQuestions : kind === "exam" ? lesson.examQuestions : kind === "vocabulary" ? lesson.vocabularyPractice : kind === "reading-extra" ? lesson.extraReadings[Number(form.dataset.index)].questions : kind === "reading" ? lesson.readQuestions : lesson.practiceB;
       let score=0;
       items.forEach((item,i) => {
         const selected=form.querySelector(`input[name="${lesson.id}-${i}"]:checked`);
@@ -251,6 +266,7 @@
       form.querySelector(".result-slot").innerHTML=`<div class="quiz-result"><strong>${score} / ${items.length}</strong><p>${kind==="quiz"?(score>=7?"Tebrikler, bu üniteyi tamamladın!":"İpuçlarını gözden geçirip testi yeniden çözebilirsin."):"Yanıtlarını açıklamalarla birlikte gözden geçir."}</p></div>`;
       if(kind==="quiz") setQuizBest(lesson,score);
       else if(kind==="lgs") setLgsBest(lesson,score);
+      else if(kind==="exam") { setExamBest(lesson,score); if(score===items.length) reward(lesson.id,"exam-perfect",15,"Kusursuz mini deneme! +15 puan"); }
       else if(kind==="vocabulary") setVocabBest(lesson,score);
       else if(kind==="reading-extra"&&score===items.length) reward(lesson.id,`reading-extra-${form.dataset.index}-perfect`,5,"Okuma alıştırması tamamlandı! +5 puan");
       else if(score===items.length) reward(lesson.id,`${kind}-perfect`,5,"Kusursuz çalışma! +5 puan");

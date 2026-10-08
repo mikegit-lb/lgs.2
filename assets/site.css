@@ -20,3 +20,40 @@
 .writing-card{max-width:920px;padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}.writing-card h3,.quest-heading h3{margin:0 0 9px;color:var(--navy);font:750 18px 'Manrope',sans-serif}.writing-card>p,.quest-content>p{font-size:13px;line-height:1.65;color:#516987}.writing-label{display:block;margin:17px 0 7px;color:#365778;font-size:12px;font-weight:750}.writing-draft{display:block;width:100%;min-height:150px;padding:12px;border:1px solid #dbe5f0;border-radius:10px;resize:vertical;color:var(--navy);font:14px/1.7 'DM Sans',sans-serif}.writing-draft:focus{outline:3px solid #dcefff;border-color:#80b9ed}.writing-draft-meta{display:flex;justify-content:space-between;gap:10px;margin:7px 0 14px;color:#69809a;font-size:11px}.writing-card h4{margin:16px 0 9px;color:#345677;font:750 13px 'Manrope',sans-serif}.writing-checklist{display:grid;gap:8px;padding:0;margin:0;list-style:none}.writing-checklist label{display:flex;align-items:flex-start;gap:9px;color:#4e6684;font-size:12px;line-height:1.5}.writing-checklist input{accent-color:#218b48}.writing-save-status{margin:11px 0 0;color:#627a95;font-size:11px}.writing-card .model-answer p{white-space:pre-line}
 .quest-game{max-width:920px;margin-bottom:18px;padding:20px 22px;border:1px solid #e1ddf4;border-radius:var(--radius);background:linear-gradient(135deg,#f7f5ff,#f2faff)}.quest-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}.quest-heading p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}.quest-rules{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}.quest-rules span{padding:7px 10px;border:1px solid #e3e9f2;border-radius:999px;background:#fff;color:#4c6481;font-size:11px;font-weight:750}.quest-status{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:#536b89;font-size:10px;font-weight:800}.quest-progress{height:7px;margin:12px 0;background:#e3e8f2;border-radius:8px;overflow:hidden}.quest-progress span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#765be7,#37a3dc);transition:width .2s}.quest-content>h4{margin:10px 0 13px;color:var(--navy);font:750 16px/1.5 'Manrope',sans-serif}.quest-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.quest-option{min-height:44px;padding:10px 12px;border:1px solid #dbe3f0;border-radius:9px;background:#fff;color:#345170;text-align:left;font:600 12px/1.45 'DM Sans',sans-serif;cursor:pointer}.quest-option:hover:not(:disabled),.quest-option:focus-visible{border-color:#917de6;background:#faf9ff;outline:3px solid #e8e3ff}.quest-option.correct{border-color:#9ed2a6;background:#effaf1;color:#26733a}.quest-option.incorrect{border-color:#ebb0a4;background:#fff3f0;color:#a34535}.quest-option:disabled{opacity:1;cursor:default}.quest-feedback{min-height:34px;margin:10px 0;color:#586f8b;font-size:11px;line-height:1.55}.quest-feedback.good{color:#218340}.quest-feedback.bad{color:#b84b3b}.quest-next[hidden]{display:none}.quest-finish{text-align:center;padding:7px 0}.quest-finish h4{margin:5px;color:var(--navy);font:750 18px 'Manrope',sans-serif}.quest-finish p{color:#536b89;font-size:12px;line-height:1.55}.quest-finish p strong{color:var(--navy)}
 @media(max-width:560px){.outcome-strip{font-size:10px}.writing-card{padding:17px 14px}.writing-draft-meta{font-size:10px}.quest-game{padding:16px 14px}.quest-heading{flex-direction:column}.quest-status{font-size:9px}.quest-options{grid-template-columns:1fr}}
+
+/* A calm color key helps learners scan the longer lesson pages. */
+#grammar{--section-color:#2878c7;--section-tint:#eff7ff}
+#vocabulary{--section-color:#b27a19;--section-tint:#fff8e8}
+#reading{--section-color:#23865a;--section-tint:#effaf4}
+#speaking{--section-color:#775bc4;--section-tint:#f5f1ff}
+#writing{--section-color:#25865d;--section-tint:#effaf4}
+#practice{--section-color:#cb7332;--section-tint:#fff4ec}
+#quiz{--section-color:#247da7;--section-tint:#edf8fc}
+#lgs{--section-color:#6e56c5;--section-tint:#f5f2ff}
+#tips{--section-color:#ad8014;--section-tint:#fff9e8}
+#game{--section-color:#7650bd;--section-tint:#f5f1ff}
+.lesson-section-head{padding:12px 15px;border-radius:14px;background:var(--section-tint,#f6f9fd);border:1px solid color-mix(in srgb,var(--section-color,#2878c7) 13%,white)}
+.section-index{background:color-mix(in srgb,var(--section-color,#2878c7) 12%,white);color:var(--section-color,#2878c7)}
+.section-pill{border-color:color-mix(in srgb,var(--section-color,#2878c7) 18%,white)}
+#grammar .grammar-card{border-top:3px solid #64a8e6;background:linear-gradient(160deg,#fff,#f7fbff)}
+#vocabulary .vocab-table{box-shadow:0 7px 22px #9a772411}
+#vocabulary .vocab-table th{background:#fff5dc;color:#87641a}
+#reading .reading-card,#reading .reading-check{background:#f2fbf6;border-color:#d7efe1}
+#speaking .speaking-exercise,#speaking .speaking-list li{background:#faf8ff;border-color:#e8e0fa}
+#writing .writing-card{background:linear-gradient(145deg,#fff,#f5fcf7);border-color:#d8efe0}
+#practice .practice-box{background:linear-gradient(145deg,#fff,#fff9f4);border-color:#f1e1d4}
+#quiz .quiz-card{background:#f5fbfe;border-color:#d8edf5}
+#lgs .quiz-card{background:#fbfaff;border-color:#e6e0f5}
+#tips .tip-list li{background:#fffdf5;border-color:#f2e9c9}
+#game .game-panel{background:linear-gradient(145deg,#fff,#faf7ff);border-color:#e5dcf5}
+.mini-exam-card{max-width:920px;margin:18px 0 28px;padding:22px 24px;border:1px solid #ded5f4;border-radius:18px;background:radial-gradient(ellipse at top right,#e9e2ff 0,transparent 44%),linear-gradient(135deg,#f9f7ff,#f3faff 72%,#f1faf7);box-shadow:0 10px 28px #463c7a0d}
+.mini-exam-topline{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.exam-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;background:#7658cb;color:white;font-size:10px;font-weight:850;letter-spacing:.08em}
+.mini-exam-card h3{margin:13px 0 5px;color:#32235e;font:800 20px 'Manrope',sans-serif}
+.mini-exam-card>p{max-width:700px;margin:0;color:#5b5876;font-size:12px;line-height:1.65}
+.mini-exam-card .quiz-card{background:#ffffffd9;border-color:#e4def3}
+.mini-exam-card .quiz-result{background:#f1edff}
+.lgs-bank-heading{align-items:center;margin:28px 0 4px;padding:13px 16px;border:1px solid #e8e2f6;border-radius:13px;background:#fbfaff}
+.lgs-bank-heading h3{margin:0 0 5px;color:#3c2f6f;font:750 17px 'Manrope',sans-serif}
+.lgs-bank-heading p{margin:0;color:#71698d;font-size:12px}
+@media(max-width:560px){.lesson-section-head{padding:10px 11px;gap:10px}.mini-exam-card{padding:17px 14px}.mini-exam-card h3{font-size:18px}.lgs-bank-heading{align-items:flex-start}}
